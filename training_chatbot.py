@@ -3,10 +3,10 @@ from nltk.stem import WordNetLemmatizer
 import json
 import pickle
 import numpy as np
-from keras.models import Sequential 
-from keras.layers import Dense,Dropout
-from keras.optimizers import SGD
-from keras.optimizers import exponentialDecay
+from keras.api.models import Sequential 
+from keras.api.layers import Dense,Dropout
+from keras.api.optimizers import SGD
+from keras.api.optimizers.schedules import ExponentialDecay
 import random
 
 data_file = open('intents_spanish.json', 'r', encoding='utf-8').read()
@@ -61,7 +61,7 @@ for doc in documents:
 
     # divide el conjunto de entrenamiento en caracteristicas (train_x) y etiquetas (train_y)
     train_x = [row[0] for row in training]
-    train_y = {row[1] for row in training}
+    train_y = [row[1] for row in training]
 
     train_x = np.array(train_x)
     train_y = np.array(train_y)
@@ -75,7 +75,7 @@ model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
 # configura el optimizador con una taza de aprendizaje exponencialmente decreciente
-lr_schedule = exponentialDecay(
+lr_schedule = ExponentialDecay(
     initial_learning_rate=0.01,
     decay_steps=10000,
     decay_rate=0.9)
