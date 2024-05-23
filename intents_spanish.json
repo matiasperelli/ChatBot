@@ -1,0 +1,11 @@
+{"intents":[
+    {
+     "tag":"saludo",
+     "patterns":["hola","buenas","que tal","como estas","saludos"],
+     "responses":["Hola! soy  Pharmagenio, asistente farmaceutico virtual. ¿Dime en que te puedo ayudar?","Hola!:D, soy Pharmagenio, ¿cómo puedo asistirte?"]
+    }
+ 
+ 
+ ]
+ 
+ }
